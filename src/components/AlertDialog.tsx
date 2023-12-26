@@ -6,12 +6,14 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
 interface AlertDialogProps {
+  title: string;
   message: string;
   open: boolean;
   handleClose: () => void;
 }
 
 export default function AlertDialog({
+  title,
   message,
   open,
   handleClose,
@@ -23,9 +25,7 @@ export default function AlertDialog({
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id="alert-dialog-title">
-        {"Timeslot already registered"}
-      </DialogTitle>
+      <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
           {message}

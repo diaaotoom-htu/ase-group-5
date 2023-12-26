@@ -128,7 +128,7 @@ interface Course {
 
 interface CourseTableProps {
   data: Course[];
-  handleAlert: (message: string) => void;
+  handleAlert: (title: string, message: string) => void;
 }
 
 export default function CourseTable({ data, handleAlert }: CourseTableProps) {
@@ -150,7 +150,7 @@ export default function CourseTable({ data, handleAlert }: CourseTableProps) {
         setRegistration({ registration: [registrationId] });
       }
     } else {
-      handleAlert("Already registered on " + timeToRegister);
+      handleAlert("Timeslot taken", "Already registered on " + timeToRegister);
     }
   };
 

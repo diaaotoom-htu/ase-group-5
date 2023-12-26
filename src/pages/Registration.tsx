@@ -1,5 +1,9 @@
+import { Box } from "@mui/material";
 import PrimaryRegistrationPageBar from "../components/PrimaryRegistrationPageBar";
+import RequestsForm from "../components/RequestsForm";
 import SearchAndTable from "../components/SearchAndTable";
+import AlertDialog from "../components/AlertDialog";
+import { useState } from "react";
 
 function createData(
   registrationId: number,
@@ -61,10 +65,30 @@ const data = [
 ].sort((a, b) => (a.name < b.timeslot ? -1 : 1));
 
 export default function Registration() {
+  const [alertDialogTitle, setAlertDialogTitle] = useState("");
+  const [alertDialogMessage, setAlertDialogMessage] = useState("");
+  const [alertDialogOpen, setAlertDialogOpen] = useState(false);
+  const handleAlertCreation = (title: string, message: string) => {
+    setAlertDialogTitle(title);
+    setAlertDialogMessage(message);
+    setAlertDialogOpen(true);
+  };
+  const closeAlert = () => {
+    setAlertDialogOpen(false);
+  };
   return (
     <>
+      <AlertDialog
+        title={alertDialogTitle}
+        message={alertDialogMessage}
+        open={alertDialogOpen}
+        handleClose={closeAlert}
+      />
       <PrimaryRegistrationPageBar />
-      <SearchAndTable data={data} />
+      <Box sx={{ display: "flex", justifyContent: "space-around" }}>
+        <SearchAndTable data={data} createAlert={handleAlertCreation} />
+        <RequestsForm createAlert={handleAlertCreation} />
+      </Box>
     </>
   );
 }
