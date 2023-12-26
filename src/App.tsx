@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, HashRouter } from "react-router-dom";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import NotFound from "./pages/NotFound";
@@ -10,7 +10,7 @@ function App() {
   const { token } = UseToken();
   return (
     <div>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route
             index
@@ -34,7 +34,7 @@ function App() {
           />
           <Route path="/*" element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
