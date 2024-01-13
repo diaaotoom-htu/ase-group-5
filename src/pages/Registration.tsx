@@ -3,7 +3,8 @@ import PrimaryRegistrationPageBar from "../components/PrimaryRegistrationPageBar
 import RequestsForm from "../components/RequestsForm";
 import SearchAndTable from "../components/SearchAndTable";
 import AlertDialog from "../components/AlertDialog";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import backgroundImg from "../assets/background.png";
 
 function createData(
   registrationId: number,
@@ -76,6 +77,15 @@ export default function Registration() {
   const closeAlert = () => {
     setAlertDialogOpen(false);
   };
+
+  useEffect(() => {
+    document.body.style.backgroundImage = `url(${backgroundImg})`;
+    return () => {
+      document.body.style.backgroundImage = '';
+    };
+  }, []);
+
+
   return (
     <>
       <AlertDialog
